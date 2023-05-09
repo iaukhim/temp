@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server
+  labels:
+    group: rent-app
+spec:
+  type: NodePort
+  selector:             # indicates into which pods ClusterIP provides access
+    app: config-server
+  ports:
+    - protocol: TCP
+      nodePort: 30001
+      port: 8888          # port exposed outside ClusterIP
+      targetPort: 8888
